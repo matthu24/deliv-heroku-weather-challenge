@@ -17,7 +17,7 @@ class Search extends React.Component{
   }
 
   onChange(field){
-    console.log(this.state)
+    // console.log(this.state)
 
     return(e) => {
 

@@ -17,7 +17,7 @@ class WeatherList extends React.Component{
     let days = parser(list);
 
 
-    console.log(days)
+    // console.log(days)
     return(
       <div className='weather-list-container'>
       {this.props.weather.city.name}, {this.props.zip}

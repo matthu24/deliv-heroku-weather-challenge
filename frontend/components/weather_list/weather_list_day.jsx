@@ -17,7 +17,7 @@ const dateTransform = str => {
 }
 
 export default props => {
-  console.log(props.day)
+  // console.log(props.day)
   //we might have some empty objects in the day array
   let firstDay;
   for(let i=0;i<props.day.length;i++){
