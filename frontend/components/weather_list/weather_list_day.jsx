@@ -38,6 +38,8 @@ export default props => {
       imageFile = 'https://s3.us-east-2.amazonaws.com/thelocallist/Clouds2.png'
     }  else if(firstDay.weather[0].main === 'Clear'){
       imageFile = 'https://s3.us-east-2.amazonaws.com/thelocallist/Clear2.png'
+    }else{
+      imageFile = 'https://s3.us-east-2.amazonaws.com/thelocallist/GenericWeather2.png';
     }
   return(
     <div className='weather-day'>
