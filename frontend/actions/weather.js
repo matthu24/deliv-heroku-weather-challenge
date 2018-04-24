@@ -19,6 +19,5 @@ export const storeZip = zip => dispatch => {
 
 export const fetchAllWeather = (zip) => dispatch => {
   fetchWeather(zip)
-    .then(result => result.json())
-    .then(weather => dispatch(receiveWeather(weather)))
+    .then(weather => dispatch(receiveWeather(weather.data)))
 }
