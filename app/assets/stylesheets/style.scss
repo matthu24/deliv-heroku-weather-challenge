@@ -123,3 +123,54 @@ color: white;
 .portfolio{
   margin: 10px;
 }
+
+
+
+#chart{
+  margin-top: 70px;
+    height: 230px;
+    width: 600px;
+    background-color: #f2f2f2;
+    margin-bottom: 60px;
+    /*margin: 0 auto;*/
+  }
+
+  .chart-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  a{
+    color:gray;
+    text-decoration: none;
+    /*margin: 20px;*/
+    padding: 10px;
+  }
+
+  a:hover{
+    color:black;
+  }
+
+  .search-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .selected{
+    background-color: #F0F8FF;
+    color: black;
+  }
+
+  hr{
+    margin-top: 10px;
+  }
+
+  .fahrenheit{
+    margin-top: 70px;
+    margin-bottom: -100px;
+    z-index: 1;
+    color:gray;
+    font-style: italic;
+  }
