@@ -64,16 +64,7 @@ class Chart extends React.Component{
       // .ticks(4);
     .tickValues([20,40,60,80,100,120]))
 
-    var y_scale_pressure =  d3.scaleLinear()
-          // .domain([20,d3.max(tempData,function(d){
-          //   return d[1];
-          // })])
-          .domain([900,1000])
-          .range([chart_height - padding ,padding])
 
-          var y_axis_pressure = d3.axisLeft(y_scale)
-            // .ticks(4);
-          .tickValues([800,900,1000])
 
 
     if(document.querySelector(`#chart${this.props.identifier}`) && document.querySelector(`#chart${this.props.identifier}`).children.length === 0){
@@ -122,10 +113,6 @@ class Chart extends React.Component{
 
   render(){
     if(!this.props.weather.city) return null;
-    // let cityInfo = this.props.identifier === 1 ? (<div> {this.props.weather.city.name}, {this.props.zip}
-    // </div>):(
-    //   <div></div>
-    // );
 
     let header;
     if(this.props.identifier === 1){
@@ -138,11 +125,21 @@ class Chart extends React.Component{
     return(
       <div className='chart-container'>
         <div className='fahrenheit'>
-            {header}
+          {header}
         </div>
 
         <div id={`chart${this.props.identifier}`}></div>
+        <div className='x-label'>
+          <div className='starting-x'>
+            {this.props.weather.list[0].dt_txt.slice(5,10)}
 
+          </div>
+          <div className='ending-x'>
+            {this.props.weather.list[38].dt_txt.slice(5,10)}
+
+          </div>
+
+        </div>
 
       </div>
     )

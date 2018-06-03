@@ -190,3 +190,19 @@ color: white;
     flex-direction: row;
 
   }
+
+  .x-label{
+    // border:1px solid black;
+    margin-left: 75px;
+    display:flex;
+    flex-direction: row;
+    width: 500px;
+    justify-content: space-around;
+    font-style: italic;
+    color: gray;
+    margin-top: -40px;
+  }
+
+  .ending-x{
+    margin-left:200px;
+  }
