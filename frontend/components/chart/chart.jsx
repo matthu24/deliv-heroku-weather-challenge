@@ -44,7 +44,7 @@ class Chart extends React.Component{
           // .domain([20,d3.max(tempData,function(d){
           //   return d[1];
           // })])
-          .domain([900,1000])
+          .domain([900,1100])
           .range([chart_height - padding ,padding])) : (d3.scaleLinear()
       // .domain([20,d3.max(tempData,function(d){
       //   return d[1];
@@ -60,7 +60,7 @@ class Chart extends React.Component{
 
     y_axis = this.props.identifier === 3 ? (d3.axisLeft(y_scale)
       // .ticks(4);
-    .tickValues([900,950,1000,1050])) : (d3.axisLeft(y_scale)
+    .tickValues([900,950,1000,1050,1100])) : (d3.axisLeft(y_scale)
       // .ticks(4);
     .tickValues([20,40,60,80,100,120]))
 
@@ -112,9 +112,12 @@ class Chart extends React.Component{
   }
 
   render(){
-    if(!this.props.weather.city) return null;
-
+    // if(!this.props.weather.city ) return null;
+    if(!this.props.weather.list[0]) return null;
     let header;
+    let startingX;
+    let startingY;
+
     if(this.props.identifier === 1){
       header = 'Temperature (°F)';
     }else if(this.props.identifier === 2){
@@ -122,6 +125,16 @@ class Chart extends React.Component{
     }else{
       header = 'Pressure (Hg)'
     }
+
+    // if(!this.props.weather.list[0] || !this.props.weather.list[38]) return null;
+      // if(this.props.weather.list[0] && this.props.weather.list[38]){
+        console.log(this.props.weather.list)
+
+        startingX = this.props.weather.list[0].dt_txt.slice(5,10);
+        startingY = this.props.weather.list[this.props.weather.list.length-1].dt_txt.slice(5,10);
+
+      // }
+
     return(
       <div className='chart-container'>
         <div className='fahrenheit'>
@@ -130,13 +143,13 @@ class Chart extends React.Component{
 
         <div id={`chart${this.props.identifier}`}></div>
         <div className='x-label'>
+
           <div className='starting-x'>
-            {this.props.weather.list[0].dt_txt.slice(5,10)}
-
+            {startingX}
           </div>
-          <div className='ending-x'>
-            {this.props.weather.list[38].dt_txt.slice(5,10)}
 
+          <div className='ending-x'>
+            {startingY}
           </div>
 
         </div>

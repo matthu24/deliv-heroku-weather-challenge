@@ -52,7 +52,7 @@ class Search extends React.Component{
         <div className='nav'>
           <Link onClick={this.forecastSwitch} className={this.state.nav === 'forecast' ? 'selected' : 'not-selected'} to="/">Five Day Forecast</Link>
 
-          <Link onClick={this.chartSwitch} className={this.state.nav === 'chart' ? 'selected' : 'not-selected'} to="/chart">Temperature Chart</Link>
+          <Link onClick={this.chartSwitch} className={this.state.nav === 'chart' ? 'selected' : 'not-selected'} to="/chart">Temperature Charts</Link>
             <hr></hr>
 
         </div>
