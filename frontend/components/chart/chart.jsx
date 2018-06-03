@@ -2,6 +2,7 @@ import React from 'react';
 import {chartUtil} from '../../utils/chart_util';
 
 
+
 class Chart extends React.Component{
   constructor(props){
     super(props);
@@ -30,19 +31,26 @@ class Chart extends React.Component{
   componentDidUpdate(){
     console.log('componentDidUpdate')
     let chart_height = 230;
-    let chart_width = 600;
+    let chart_width = 500;
     let padding = 40;
+    let y_scale;
+    let y_axis;
 
-    let tempData = chartUtil(this.props.weather.list);
+    let tempData = this.props.tempData;
 
     //if there is no svg yet, add the svg, and do all the waiting room stuff
     //the check is to see if the chart div element has any svg children;
-    var y_scale = d3.scaleLinear()
+    y_scale = this.props.identifier === 3 ? (d3.scaleLinear()
+          // .domain([20,d3.max(tempData,function(d){
+          //   return d[1];
+          // })])
+          .domain([900,1000])
+          .range([chart_height - padding ,padding])) : (d3.scaleLinear()
       // .domain([20,d3.max(tempData,function(d){
       //   return d[1];
       // })])
       .domain([20,120])
-      .range([chart_height - padding ,padding])
+      .range([chart_height - padding ,padding]))
 
     var x_scale = d3.scaleLinear()
       .domain([0,d3.max(tempData,function(d){
@@ -50,14 +58,27 @@ class Chart extends React.Component{
       })])
       .range([padding * 2,chart_width - padding])
 
-    var y_axis = d3.axisLeft(y_scale)
+    y_axis = this.props.identifier === 3 ? (d3.axisLeft(y_scale)
       // .ticks(4);
-    .tickValues([20,40,60,80,100,120])
+    .tickValues([900,950,1000,1050])) : (d3.axisLeft(y_scale)
+      // .ticks(4);
+    .tickValues([20,40,60,80,100,120]))
+
+    var y_scale_pressure =  d3.scaleLinear()
+          // .domain([20,d3.max(tempData,function(d){
+          //   return d[1];
+          // })])
+          .domain([900,1000])
+          .range([chart_height - padding ,padding])
+
+          var y_axis_pressure = d3.axisLeft(y_scale)
+            // .ticks(4);
+          .tickValues([800,900,1000])
 
 
-    if(document.querySelector('#chart') && document.querySelector('#chart').children.length === 0){
+    if(document.querySelector(`#chart${this.props.identifier}`) && document.querySelector(`#chart${this.props.identifier}`).children.length === 0){
 
-      let svg = d3.select('#chart')
+      let svg = d3.select(`#chart${this.props.identifier}`)
         .append('svg')
         .attr('width', chart_width)
         .attr('height', chart_height);
@@ -86,7 +107,7 @@ class Chart extends React.Component{
     }else{
       //for updating the graph, when user enters a new zip code: don't have to make a new svg,
       //don't have to use waiting room, we can use the circle elements that already exist
-      let svg = d3.select('#chart')
+      let svg = d3.select(`#chart${this.props.identifier}`)
 
       svg.selectAll('circle')
         .data(tempData)
@@ -101,14 +122,26 @@ class Chart extends React.Component{
 
   render(){
     if(!this.props.weather.city) return null;
+    // let cityInfo = this.props.identifier === 1 ? (<div> {this.props.weather.city.name}, {this.props.zip}
+    // </div>):(
+    //   <div></div>
+    // );
+
+    let header;
+    if(this.props.identifier === 1){
+      header = 'Temperature (°F)';
+    }else if(this.props.identifier === 2){
+      header = 'Humidity (%)';
+    }else{
+      header = 'Pressure (Hg)'
+    }
     return(
       <div className='chart-container'>
-        {this.props.weather.city.name}, {this.props.zip}
         <div className='fahrenheit'>
-            Temperature (°F)
+            {header}
         </div>
 
-        <div id='chart'></div>
+        <div id={`chart${this.props.identifier}`}></div>
 
 
       </div>

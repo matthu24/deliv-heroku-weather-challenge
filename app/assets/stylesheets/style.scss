@@ -126,14 +126,18 @@ color: white;
 
 
 
-#chart{
-  margin-top: 70px;
+#chart1, #chart2, #chart3{
+  margin-top: 60px;
+  margin-left: 30px;
     height: 230px;
-    width: 600px;
+    width: 500px;
     background-color: #f2f2f2;
-    margin-bottom: 60px;
+    margin-bottom: 10px;
+
     /*margin: 0 auto;*/
   }
+  //
+
 
   .chart-container{
     display:flex;
@@ -173,4 +177,16 @@ color: white;
     z-index: 1;
     color:gray;
     font-style: italic;
+  }
+
+  .lower-chart{
+    display: flex;
+    flex-direction: row;
+
+  }
+
+  .upper-charts{
+    display: flex;
+    flex-direction: row;
+
   }
